@@ -10,17 +10,16 @@ namespace NonDecreasingDynamicProgramming
 	{
 		static void Main(string[] args)
 		{
-			// 3, 5, 6, 1, 2
-			int[] numbers = new int[5] { 3, 5, 6, 1, 2 };//TODO: remove
+			int[] numbers = new int[8];
 			Random rnd = new Random();
 			String input = "";
 			
 			while (input != "exit" || input != "x") {
-				/*for (int i = 0; i < numbers.Length; i++)
+				for (int i = 0; i < numbers.Length; i++)
 				{
 					numbers[i] = rnd.Next(1, 10);
 					Console.Write(numbers[i] + ", ");
-				}*/
+				}
 				Console.WriteLine("done");
 				Console.WriteLine("largest non decreasing set is " + largestNonDecreasing(numbers, numbers.Length - 1, numbers.Max()) + " numbers long");
 				input = Console.ReadLine();
@@ -29,11 +28,11 @@ namespace NonDecreasingDynamicProgramming
 
 		static private int largestNonDecreasing(int[] set, int k, int x)
 		{
-			if (k == 0)
+			if (k < 0)
 			{
-				return 1;
+				return 0;
 			}
-			if (set[k] >= set[k-1])
+			if (set[k] <= x)
 			{
 				return Math.Max(largestNonDecreasing(set, k - 1, set[k]) + 1, largestNonDecreasing(set, k - 1, x));
 			}
